@@ -17,6 +17,81 @@
     <header>
       <h1>Weather Wizard</h1>
     </header>
+    <Container>
+
+      <div class="input-group mb-3">
+        <input id="search" type="text" class="form-control" placeholder="Enter A City" >
+        <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
+      </div>
+      <h5>Today's Weather</h5>
+      <p id="currentDay" class="lead"></p>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <h5>Five Day Forcast</h5>
+      <div class="card" id="card1" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <div class="card" id="card2" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <div class="card" id="card3" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <div class="card" id="card4" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <div class="card" id="card5" style="width: 18rem;">
+        <div class="card-body" id="weatherCard">
+          <h2 class="card-title" id="city">City Name</h2>
+        
+          <p  id="temp" class=card-text">Temp:</p>
+          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <p id="humidity" class="card-text">Humidity:</p>
+          
+        </div>
+      </div>
+      <div id="previouslySearched">
+        <h4>Search History</h4><button id="clearBtn">Clear Results</button>
+        <br>
+        <br>
+      </div>
+    </Container>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -27,6 +102,14 @@
       integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/advancedFormat.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.4/plugin/weekOfYear.js"></script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_advancedFormat);
+      dayjs.extend(window.dayjs_plugin_weekOfYear);
+    </script>
     <script src="script.js" type="text/javascript"></script>
   </body>
 </html>
