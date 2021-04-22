@@ -10,7 +10,7 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Wizard</title>
   </head>
   <body>
@@ -23,8 +23,8 @@
         <input id="search" type="text" class="form-control" placeholder="Enter A City" >
         <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
       </div>
-      <h5>Today's Weather</h5>
       <p id="currentDay" class="lead"></p>
+      <h5>Today's Weather</h5>
       <div class="card" style="width: 18rem;">
         <div class="card-body" id="weatherCard">
           <h2 class="card-title" id="city">City Name</h2>
@@ -110,6 +110,6 @@
       dayjs.extend(window.dayjs_plugin_advancedFormat);
       dayjs.extend(window.dayjs_plugin_weekOfYear);
     </script>
-    <script src="script.js" type="text/javascript"></script>
+    <script src="./assets/script/script.js" type="text/javascript"></script>
   </body>
 </html>
