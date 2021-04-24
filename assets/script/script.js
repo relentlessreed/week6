@@ -9,11 +9,6 @@ function searchForCity(city) {
       var lat = data.coord.lat;
       var long = data.coord.lon;
       dataCity = data.name;
-      // make a new apiquery variable
-      // use the lat and long from above
-      // fetch again with new apiquery
-      // inside that response, call another separate that handles 5 day forecast
-      // var fiveDayForecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`;
       var apiTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${API_key}`;
       fetch(apiTwo)
         .then((res) => res.json())
@@ -27,6 +22,7 @@ function searchForCity(city) {
     });
 }
 var dataCity = "";
+
 // Getting Current Date
 var currentTime = $("#currentDay").text(dayjs().format("MMM Do, YYYY hh:mm A"));
 // weather is now outside of the fetch function
@@ -48,28 +44,19 @@ function getWeatherFiveDay(data) {
     fiveDayDiv.append(`<p>Wind Speed: ${data.daily[i].wind_speed}</p>`);
     fiveDayDiv.append(`<p>Humidity: ${data.daily[i].humidity}</p>`);
   }
-
-  /*$("#card1").empty();
-  $("#card1").append(`<div id="appendedCard1"></div>`);
-  var fiveDayDiv = $(`#appendedCard1`);
-  fiveDayDiv.append(`<p>Temperature: ${data.current.temp}</p>`);
-  fiveDayDiv.append(`<p>Wind Speed: ${data.current.wind_speed}</p>`);
-  fiveDayDiv.append(`<p>Humidity: ${data.current.humidity}</p>`);*/
-
-  // do what getWeather does.. get data from argument, and set it into cards
-  // Grab weather Icon
-  //<img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png" alt="${data.daily[i].weather[0].description}">
 }
 function getWeather(data) {
   var uvi = data.current.uvi;
   readUvi(uvi, "#uviReadout");
-  // Take All The Data, and Put It Into The HTML
+
+  // Takes all data an injects into HTML
   var cityName = data.name;
   var temp = data.current.temp; // comes in kelvin
   var humidity = data.current.humidity;
   var windSpeed = data.current.wind_speed;
-  // rounding temp float to whole number
-  // Getting √CITY NAME,
+
+  // Rounding temp float to whole number
+  // Getting CITY NAME,
   temp = Math.floor(temp);
   $("#city").text(cityToSearch);
   $("#weatherIcon").attr(
@@ -82,6 +69,7 @@ function getWeather(data) {
   $("#uviReadout").text(`Uvi Index: ${uvi}`);
   console.log(data);
 }
+
 // Get and Color UV index
 function readUvi(uvi, el) {
   switch (true) {
@@ -99,15 +87,14 @@ function readUvi(uvi, el) {
       break;
   }
 }
+
 var cityToSearch = "";
+
 // event handling for search
 $("#searchBtn").click(function (e) {
-  //console.log("Search Button Clicked");
-  // console.log("Event ====>", e);
-
   // get value the user typed
   cityToSearch = $("#search").val();
-  //console.log("THE CITY I TYPED", cityToSearch);
+
   // if city to search does not equal empty string or undefined, then search for city
   if (!cityToSearch == "" || !cityToSearch == typeof "undefined") {
     searchForCity(cityToSearch);
@@ -138,6 +125,7 @@ function listSearches() {
   }
   return table;
 }
+
 // creates buttons for searched cities
 let searchHistory = listSearches();
 for (let key in searchHistory) {
@@ -148,53 +136,22 @@ for (let key in searchHistory) {
     // get saved city data
     var data = getSavedCityData(key);
     cityToSearch = key;
+
     // Update card to render data from saved search
     searchForCity(key);
     console.log(data);
   });
 }
 
-// TO DO: reload list after new search
-
 // retrieve data for paticular city
 function getSavedCityData(city) {
   var retrievedCity = localStorage.getItem("city-" + city);
   return JSON.parse(retrievedCity);
 }
-
+// Clear Local Storage on Button Click
 $("#clearBtn").click(function (e) {
   e.preventDefault();
   localStorage.clear();
   //removes any children within parent
   $("#previouslySearched").empty();
 });
-// Clear Local Storage on Button Click
-
-// loop over weather, populate
-
-//if status !200 then otherwise console.log("error")
-
-// Inject Icon
-
-// Inject Data Into HTML
-// Dynamically Populate Page with Elements
-//
-/*
-Weather Wizard
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-
-Acceptance Criteria
-GIVEN a weather dashboard with form inputs[√]
-WHEN I search for a city[√]
-THEN I am presented with current and future conditions for that city[] and that city is added to the search history[√]
-WHEN I view current weather conditions for that city
-THEN I am presented with the [√]city name, []the date, []an icon representation of weather conditions, [√]the temperature, [√]the humidity, [√]the wind speed, []and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe[]
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date[], an icon representation of weather conditions[], the temperature[], the wind speed[], and the humidity[]
-WHEN I click on a city in the search history[]
-THEN I am again presented with current and future conditions for that city[]
-*/
