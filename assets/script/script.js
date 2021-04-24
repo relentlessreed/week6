@@ -8,9 +8,7 @@ function searchForCity(city) {
     .then((data) => {
       var lat = data.coord.lat;
       var long = data.coord.lon;
-      console.log("LAT", lat);
-      console.log("LONG", long);
-
+      dataCity = data.name;
       // make a new apiquery variable
       // use the lat and long from above
       // fetch again with new apiquery
@@ -21,15 +19,15 @@ function searchForCity(city) {
         .then((res) => res.json())
         .then((data) => {
           getWeather(data);
-          console.log(data);
-          saveToLocalStorage(data.name, data);
+          console.log(dataCity);
+          saveToLocalStorage(dataCity, data);
 
           getWeatherFiveDay(data);
-          // Display Day of week in each card of Five Day Forecast [ ] <- Needs to be checked off
         });
     });
 }
-// √Getting Current Date
+var dataCity = "";
+// Getting Current Date
 var currentTime = $("#currentDay").text(dayjs().format("MMM Do, YYYY hh:mm A"));
 // weather is now outside of the fetch function
 // now accecible via weather
@@ -41,7 +39,7 @@ function getWeatherFiveDay(data) {
     $(`#card${i + 1}`).append(`<div id="appendedCard${i}"></div>`);
     var fiveDayDiv = $(`#appendedCard${i}`);
     fiveDayDiv.append(
-      `<h3>${dayjs.unix(data.daily[i].dt).format("MM/DD/YYYY")}</h3>`
+      `<h3>${dayjs.unix(data.daily[i].dt).format("dddd MM/DD/YYYY")}</h3>`
     );
     fiveDayDiv.append(
       `<img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png" alt="${data.daily[i].weather[0].description}">`
@@ -63,6 +61,8 @@ function getWeatherFiveDay(data) {
   //<img src="http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}.png" alt="${data.daily[i].weather[0].description}">
 }
 function getWeather(data) {
+  var uvi = data.current.uvi;
+  readUvi(uvi, "#uviReadout");
   // Take All The Data, and Put It Into The HTML
   var cityName = data.name;
   var temp = data.current.temp; // comes in kelvin
@@ -79,24 +79,24 @@ function getWeather(data) {
   $("#temp").text(`Temperature: ${temp}`);
   $("#windSpeed").text(`Wind Speed: ${windSpeed}`);
   $("#humidity").text(`Humidity: ${humidity}`);
+  $("#uviReadout").text(`Uvi Index: ${uvi}`);
   console.log(data);
 }
 // Get and Color UV index
-function readUvi(uvi) {
-  if (uvi <= 2) {
-    return "#adffdc";
-  }
-  if (2 < uvi <= 5) {
-    return "#ffe799";
-  }
-  if (5 < uvi <= 7) {
-    return "f7bca1";
-  }
-  if (7 < uvi <= 10) {
-    return "#ea9a9d";
-  }
-  if (uvi > 10) {
-    return "#dfa4f4";
+function readUvi(uvi, el) {
+  switch (true) {
+    case uvi < 2:
+      $(el).css("color", "#adffdc");
+      break;
+    case uvi > 2:
+      $(el).css("color", "#ffe799");
+      break;
+    case uvi > 5:
+      $(el).css("color", "#f7bca1");
+      break;
+    default:
+      $(el).css("color", "#ffffff");
+      break;
   }
 }
 var cityToSearch = "";
@@ -108,8 +108,10 @@ $("#searchBtn").click(function (e) {
   // get value the user typed
   cityToSearch = $("#search").val();
   //console.log("THE CITY I TYPED", cityToSearch);
-
-  searchForCity(cityToSearch);
+  // if city to search does not equal empty string or undefined, then search for city
+  if (!cityToSearch == "" || !cityToSearch == typeof "undefined") {
+    searchForCity(cityToSearch);
+  }
 });
 
 // Saving input to local storage
@@ -140,9 +142,9 @@ function listSearches() {
 let searchHistory = listSearches();
 for (let key in searchHistory) {
   $("#previouslySearched").append(
-    `<button id=saved-search-${key}>${key}</button><br></br>`
+    `<button id=saved-search-${key.replace(" ", "-")}>${key}</button><br></br>`
   );
-  $(`#saved-search-${key}`).click(function (e) {
+  $(`#saved-search-${key.replace(" ", "-")}`).click(function (e) {
     // get saved city data
     var data = getSavedCityData(key);
     cityToSearch = key;
@@ -160,6 +162,12 @@ function getSavedCityData(city) {
   return JSON.parse(retrievedCity);
 }
 
+$("#clearBtn").click(function (e) {
+  e.preventDefault();
+  localStorage.clear();
+  //removes any children within parent
+  $("#previouslySearched").empty();
+});
 // Clear Local Storage on Button Click
 
 // loop over weather, populate

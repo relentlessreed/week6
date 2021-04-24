@@ -25,8 +25,9 @@
       </div>
       <p id="currentDay" class="lead"></p>
       <h5>Today's Weather</h5>
-      <div class="card" style="width: 18rem;">
-        <div class="card-body" id="weatherCard">
+      <div class="card" id="weatherCard" style="width: 18rem;">
+        <p id="uviReadout"></p>
+        <div class="card-body">
           <h2 class="card-title" id="city">City Name</h2>
           <img id="weatherIcon">
           <p  id="temp" class=card-text">Temp:</p>
@@ -45,8 +46,9 @@
       </div>
       <div class="card" id="card5" style="width: 18rem;">
       </div>
-      <div id="previouslySearched">
+      <div>
         <h4>Search History</h4><button id="clearBtn">Clear Results</button>
+        <div id="previouslySearched"></div>
         <br>
         <br>
       </div>
