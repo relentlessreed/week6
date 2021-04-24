@@ -24,7 +24,9 @@ function searchForCity(city) {
 var dataCity = "";
 
 // Getting Current Date
-var currentTime = $("#currentDay").text(dayjs().format("MMM Do, YYYY hh:mm A"));
+var currentTime = $("#currentDay").text(
+  dayjs().format("dddd MMM Do, YYYY hh:mm A")
+);
 // weather is now outside of the fetch function
 // now accecible via weather
 
@@ -66,7 +68,7 @@ function getWeather(data) {
   $("#temp").text(`Temperature: ${temp}`);
   $("#windSpeed").text(`Wind Speed: ${windSpeed}`);
   $("#humidity").text(`Humidity: ${humidity}`);
-  $("#uviReadout").text(`Uvi Index: ${uvi}`);
+  $("#uviReadout").text(`UV Index: ${uvi}`);
   console.log(data);
 }
 
@@ -130,17 +132,8 @@ function listSearches() {
 let searchHistory = listSearches();
 for (let key in searchHistory) {
   $("#previouslySearched").append(
-    `<button id=saved-search-${key.replace(" ", "-")}>${key}</button><br></br>`
+    `<button data-name="${key}">${key}</button><br></br>`
   );
-  $(`#saved-search-${key.replace(" ", "-")}`).click(function (e) {
-    // get saved city data
-    var data = getSavedCityData(key);
-    cityToSearch = key;
-
-    // Update card to render data from saved search
-    searchForCity(key);
-    console.log(data);
-  });
 }
 
 // retrieve data for paticular city
@@ -150,8 +143,16 @@ function getSavedCityData(city) {
 }
 // Clear Local Storage on Button Click
 $("#clearBtn").click(function (e) {
-  e.preventDefault();
   localStorage.clear();
   //removes any children within parent
   $("#previouslySearched").empty();
+});
+
+$(`#previouslySearched`).on("click", "button", function (e) {
+  // get saved city data
+  var name = getSavedCityData(e.target.dataset.name);
+
+  // Update card to render data from saved search
+  searchForCity(name);
+  console.log(name);
 });

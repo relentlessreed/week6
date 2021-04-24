@@ -14,43 +14,49 @@
     <title>Weather Wizard</title>
   </head>
   <body>
-    <header>
+    <header class="Header">
       <h1>Weather Wizard</h1>
     </header>
     <Container>
-
       <div class="input-group mb-3">
-        <input id="search" type="text" class="form-control" placeholder="Enter A City" >
-        <button class="btn btn-outline-secondary" type="button" id="searchBtn">Search</button>
+        <input
+          id="search"
+          type="text"
+          class="form-control"
+          placeholder="Enter A City"
+        />
+        <button class="btn btn-outline-secondary" type="button" id="searchBtn">
+          Search
+        </button>
       </div>
       <p id="currentDay" class="lead"></p>
-      <h5>Today's Weather</h5>
-      <div class="card" id="weatherCard" style="width: 18rem;">
+      <h5>Today's Weather:</h5>
+      <div class="card" id="weatherCard" style="width: 18rem">
         <p id="uviReadout"></p>
         <div class="card-body">
           <h2 class="card-title" id="city">City Name</h2>
-          <img id="weatherIcon">
-          <p  id="temp" class=card-text">Temp:</p>
-          <p id="windSpeed"class="card-text">Wind Speed:</p>
+          <img id="weatherIcon" />
+          <p id="temp" class="card-text">Temp:</p>
+          <p id="windSpeed" class="card-text">Wind Speed:</p>
           <p id="humidity" class="card-text">Humidity:</p>
         </div>
       </div>
-      <h5>Five Day Forcast</h5>
-      <div class="card" id="card1" style="width: 18rem;">
-      </div>
-      <div class="card" id="card2" style="width: 18rem;">
-      </div>
-      <div class="card" id="card3" style="width: 18rem;">
-      </div>
-      <div class="card" id="card4" style="width: 18rem;">
-      </div>
-      <div class="card" id="card5" style="width: 18rem;">
-      </div>
+      <h5>Five Day Forcast:</h5>
+      <div class="card" id="card1" style="width: 18rem"></div>
+      <div class="card" id="card2" style="width: 18rem"></div>
+      <div class="card" id="card3" style="width: 18rem"></div>
+      <div class="card" id="card4" style="width: 18rem"></div>
+      <div class="card" id="card5" style="width: 18rem"></div>
       <div>
-        <h4>Search History</h4><button id="clearBtn">Clear Results</button>
+        <h4 class="h4"><u></u>Search History</h4>
+        <buttonDiv
+          ><button class="clearButton" id="clearBtn">
+            Clear Results
+          </button></buttonDiv
+        >
         <div id="previouslySearched"></div>
-        <br>
-        <br>
+        <br />
+        <br />
       </div>
     </Container>
     <script
