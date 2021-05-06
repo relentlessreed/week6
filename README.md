@@ -6,3 +6,5 @@ A simple weather forecast application. When you search a city, you will see list
 [Link to deployable application](https://relentlessreed.github.io/week6/)
 
 ![Screenshot](weatherscreenshot.png)
+
+[Email Me: relentlessreed@gmail.com](mailto:relentlessreed@gmail.com?subject=GitHub)

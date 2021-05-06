@@ -131,10 +131,8 @@ function listSearches() {
 // creates buttons for searched cities
 let searchHistory = listSearches();
 for (let key in searchHistory) {
-  $("#previouslySearched").append(
-    `<button data-name="${key}">${key}</button><br></br>`
-  );
-}
+  $("#previouslySearched").append(`<button data-name="${key}">${key}</button><br></br>`);}
+
 
 // retrieve data for paticular city
 function getSavedCityData(city) {
