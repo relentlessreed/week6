@@ -9,4 +9,13 @@ A simple weather forecast application. When you search a city, you will see list
 
 ![Screenshot](weatherwizardscreenshot.png)
 
+Technologies Used:
+
+- HTML
+- CSS
+- DayJS
+- Bootstrap
+- JQuery
+- JavaScript
+
 [Email Me: relentlessreed@gmail.com](mailto:relentlessreed@gmail.com?subject=GitHub)
