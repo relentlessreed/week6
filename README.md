@@ -7,4 +7,6 @@ A simple weather forecast application. When you search a city, you will see list
 
 ![Screenshot](weatherscreenshot.png)
 
+![Screenshot](weatherwizardscreenshot.png)
+
 [Email Me: relentlessreed@gmail.com](mailto:relentlessreed@gmail.com?subject=GitHub)
