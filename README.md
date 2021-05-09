@@ -5,7 +5,7 @@ A simple weather forecast application. When you search a city, you will see list
 
 [Link to deployable application](https://relentlessreed.github.io/week6/)
 
-![Screenshot](weatherscreenshot.png)
+![Screenshot](weatherwizarddemo.gif)
 
 ![Screenshot](weatherwizardscreenshot.png)
 
